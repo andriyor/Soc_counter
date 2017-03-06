@@ -94,6 +94,6 @@ ENV/
 
 # Rope project settings
 .ropeproject
-.idea/*
+.idea/
 
 Будет удалено .idea/workspace.xml
