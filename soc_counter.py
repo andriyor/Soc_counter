@@ -2,8 +2,10 @@ import time
 import grequests
 from flask import Flask, render_template
 from bs4 import BeautifulSoup
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
+Bootstrap(app)
 
 handle = 'rozetked'
 
@@ -58,7 +60,7 @@ def fetch_facebook_followers(page):
 def index():
     start_time = time.time()
     rs = (grequests.get(u) for u in link_list)
-    y, t, i, f = list(map(lambda x: x.text, grequests.map(rs)))
+    y, t, i, f = list(map(lambda r: r.text, grequests.map(rs)))
     ys = fetch_youtube_subscriber(y)
     tf = fetch_twitter_followers(t)
     instagram_followers = fetch_instagram_followers(i)
