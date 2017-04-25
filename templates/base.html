@@ -1,0 +1,81 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}soc counter{% endblock %}
+
+<!-- Custom styles for this template -->
+{% block styles %}
+    {{super()}}
+    <link rel="stylesheet" href="../static/css/soon.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Raleway:400,300,700">
+{% endblock %}
+
+{% block content %}
+    <body class="nomobile">
+    <!-- START HEADER -->
+    <section id="header">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                        </button>
+                        <a class="navbar-brand" href="/">Soc counter</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            {% if current_user.is_authenticated %}
+                                <li><a href="/edit-profile">My Profile</a></li>
+                                <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
+                            {% else %}
+                                <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
+
+            {% block page_content %}{% endblock %}
+        </div>
+        <!-- LAYER OVER THE SLIDER TO MAKE THE WHITE TEXTE READABLE -->
+        <div id="layer"></div>
+        <!-- END LAYER -->
+        <!-- START SLIDER -->
+        <div id="slider" class="rev_slider">
+            <ul>
+                <li data-transition="slideleft" data-slotamount="1" data-thumb="img/slider/1.jpg">
+                    <img src="{{ url_for('static', filename="img/slider/1.jpg") }}">
+                </li>
+                <li data-transition="slideleft" data-slotamount="1" data-thumb="img/slider/2.jpg">
+                    <img src="{{ url_for('static', filename="img/slider/2.jpg") }}">
+                </li>
+                <li data-transition="slideleft" data-slotamount="1" data-thumb="img/slider/3.jpg">
+                    <img src="{{ url_for('static', filename="img/slider/3.jpg") }}">
+                </li>
+                <li data-transition="slideleft" data-slotamount="1" data-thumb="img/slider/4.jpg">
+                    <img src="{{ url_for('static', filename="img/slider/4.jpg") }}">
+                </li>
+            </ul>
+        </div>
+        <!-- END SLIDER -->
+    </section>
+    </body>
+{% endblock %}
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+{% block scripts %}
+    {{super()}}
+    <script src="{{url_for('static', filename='js/modernizr.custom.js')}}"></script>
+    <script src="{{url_for('static', filename='js/soon/plugins.js')}}"></script>
+    <script src="{{url_for('static', filename='js/soon/jquery.themepunch.revolution.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/soon/custom.js')}}"></script>
+{% endblock %}
